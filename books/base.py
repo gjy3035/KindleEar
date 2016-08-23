@@ -4,7 +4,7 @@
 KindleEar电子书基类，每本投递到kindle的书籍抽象为这里的一个类。
 可以继承BaseFeedBook类而实现自己的定制书籍。
 """
-import os, re, urllib, urlparse, imghdr, datetime, hashlib
+import os, re, urllib, urlparse, imghdr, datetime, hashlib, time
 from urllib2 import *
 
 from bs4 import BeautifulSoup, Comment, NavigableString, CData, Tag
@@ -489,6 +489,7 @@ class BaseFeedBook:
         """ 使用readability-lxml处理全文信息
         因为图片文件占内存，为了节省内存，这个函数也做为生成器
         """
+        time.sleep(5)
         content = self.preprocess(article)
         if not content:
             return
@@ -706,6 +707,7 @@ class BaseFeedBook:
         """ 使用BeautifulSoup手动解析网页，提取正文内容
         因为图片文件占内存，为了节省内存，这个函数也做为生成器
         """
+        time.sleep(5)
         content = self.preprocess(article)
         soup = BeautifulSoup(content, "lxml")
 
@@ -1095,6 +1097,7 @@ class WebpageBook(BaseFeedBook):
         for section, url in self.feeds:
             opener = URLOpener(self.host, timeout=timeout, headers=self.extra_header)
             result = opener.open(url)
+            time.sleep(5)
             status_code, content = result.status_code, result.content
             if status_code != 200 or not content:
                 self.log.warn('fetch article failed(%s):%s.' % (URLOpener.CodeMap(status_code), url))
