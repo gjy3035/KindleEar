@@ -489,7 +489,7 @@ class BaseFeedBook:
         """ 使用readability-lxml处理全文信息
         因为图片文件占内存，为了节省内存，这个函数也做为生成器
         """
-        time.sleep(5)
+        #time.sleep(5)
         content = self.preprocess(article)
         if not content:
             return
@@ -707,7 +707,7 @@ class BaseFeedBook:
         """ 使用BeautifulSoup手动解析网页，提取正文内容
         因为图片文件占内存，为了节省内存，这个函数也做为生成器
         """
-        time.sleep(5)
+        #time.sleep(5)
         content = self.preprocess(article)
         soup = BeautifulSoup(content, "lxml")
 
@@ -1097,7 +1097,7 @@ class WebpageBook(BaseFeedBook):
         for section, url in self.feeds:
             opener = URLOpener(self.host, timeout=timeout, headers=self.extra_header)
             result = opener.open(url)
-            time.sleep(5)
+            # time.sleep(5)
             status_code, content = result.status_code, result.content
             if status_code != 200 or not content:
                 self.log.warn('fetch article failed(%s):%s.' % (URLOpener.CodeMap(status_code), url))
