@@ -1,0 +1,1 @@
+python.exe appcfg.py update C:\Users\GJY\Desktop\KindleEar-master\app.yaml C:\Users\GJY\Desktop\KindleEar-master\module-worker.yaml && python.exe appcfg.py update C:\Users\GJY\Desktop\KindleEar-master
